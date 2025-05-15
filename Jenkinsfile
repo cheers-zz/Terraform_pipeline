@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 input message: 'Apply infrastructure changes?', ok: 'Apply'
-                sh 'terraform apply -auto-approve tfplan'
+                sh "terraform apply -auto-approve -var-file=${TFVARS_FILE}"
             }
         }
     }
