@@ -18,13 +18,6 @@ pipeline {
                 sh 'terraform init'
             }
         }
-
-        stage('Terraform Validate') {
-            steps {
-                sh 'terraform validate'
-            }
-        }
-
         stage('Terraform Plan') {
             steps {
                 sh """
