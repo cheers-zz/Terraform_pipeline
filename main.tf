@@ -1,6 +1,6 @@
 resource "aws_instance" "test" {
     ami = "var.ami"
-    instance_type = "var.type"
+    instance_type = "var.instance_type"
     key_name = "Demo"
 
     tags ={
@@ -10,6 +10,3 @@ resource "aws_instance" "test" {
 }
 
 
-
-
-ami-0953476d60561c955
