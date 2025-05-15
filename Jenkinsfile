@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = 'us-east-1'                // Set your preferred AWS region
-        TF_VAR_region = "${AWS_REGION}"        // Terraform variable (optional)
+        AWS_REGION = 'us-east-1'
+        TFVARS_FILE = 'test.tfvars' // Updated from custom.tfvars to test.tfvars
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh """
                     terraform plan \
-                      -var="region=${AWS_REGION}" \
+                      -var-file=${TFVARS_FILE} \
                       -out=tfplan
                 """
             }
@@ -47,7 +47,7 @@ pipeline {
     }
 
     parameters {
-        booleanParam(name: 'APPLY_CHANGES', defaultValue: false, description: 'Check to apply Terraform changes')
+        booleanParam(name: 'APPLY_CHANGES', defaultValue: false, description: 'Apply the Terraform changes')
     }
 
     post {
